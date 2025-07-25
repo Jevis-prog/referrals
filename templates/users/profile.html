@@ -1,10 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8" />
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-$END$
+
+<h2>Профиль</h2>
+<p>Телефон: {{ profile.phone_number }}</p>
+<p>Ваш инвайт-код: {{ profile.invite_code }}</p>
+<p>Активированный код: {{ profile.invited_by_code|default:"Вы пока не активировали код" }}</p>
+
+<h3>Приглашённые пользователи:</h3>
+<ul>
+  {% for user in invited_users %}
+    <li>{{ user }}</li>
+  {% empty %}
+    <li>Пока никого</li>
+  {% endfor %}
+</ul>
+
+<h3>Активировать чужой инвайт-код</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Активировать</button>
+</form>
+
 </body>
 </html>
