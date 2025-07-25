@@ -17,8 +17,6 @@ django-stubs = "^5.2.2"
 mypy-extensions = "^1.1.0"
 types-requests = "^2.32.4.20250611"
 
-env = ["USE_LOCAL_TEST_CONFIG=true"]
-asyncio_mode = 'auto'
 
 [build-system]
 requires = ["poetry-core"]
